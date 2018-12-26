@@ -1,5 +1,5 @@
 namespace Compiler
 
-module Say =
-    let hello name =
-        printfn "Hello %s" name
+module Compiler =
+    let Compile =
+        printfn "Hello" 

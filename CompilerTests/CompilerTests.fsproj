@@ -1,0 +1,130 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="nunit" Version="3.10.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="SyntaxAnalyzerTests.fs" />
+    <None Include="Files\al-count-1.b" />
+    <None Include="Files\al-count-2.b" />
+    <None Include="Files\awib-0.4.b" />
+    <None Include="Files\awib-0.4.in" />
+    <None Include="Files\awib-0.4.out" />
+    <None Include="Files\Beer.b" />
+    <None Include="Files\Beer.out" />
+    <None Include="Files\Bench.b" />
+    <None Include="Files\Bench.out" />
+    <None Include="Files\BusyBeaver.b" />
+    <None Include="Files\BusyBeaverOverflow.b" />
+    <None Include="Files\cells100k.b" />
+    <None Include="Files\cells30k.b" />
+    <None Include="Files\Cellsize.b" />
+    <None Include="Files\Cellsize2.b" />
+    <None Include="Files\Cellsize3.b" />
+    <None Include="Files\Cellsize4.b" />
+    <None Include="Files\Cellsize5.b" />
+    <None Include="Files\chess.b" />
+    <None Include="Files\Collatz.b" />
+    <None Include="Files\Collatz.in" />
+    <None Include="Files\Collatz.out" />
+    <None Include="Files\Counter.b" />
+    <None Include="Files\Counter.out" />
+    <None Include="Files\cristofd-30000.b" />
+    <None Include="Files\cristofd-close.b" />
+    <None Include="Files\cristofd-endtest.b" />
+    <None Include="Files\cristofd-endtest.in" />
+    <None Include="Files\cristofd-leftmargin.b" />
+    <None Include="Files\cristofd-misctest.b" />
+    <None Include="Files\cristofd-open.b" />
+    <None Include="Files\cristofd-rightmargin.b" />
+    <None Include="Files\EasyOpt.b" />
+    <None Include="Files\Endtest.b" />
+    <None Include="Files\Endtest.in" />
+    <None Include="Files\Euler1-orig.b" />
+    <None Include="Files\Euler1.b" />
+    <None Include="Files\Euler1.out" />
+    <None Include="Files\Euler5-orig.b" />
+    <None Include="Files\Euler5.b" />
+    <None Include="Files\Euler5.out" />
+    <None Include="Files\Factor.b" />
+    <None Include="Files\Factor.in" />
+    <None Include="Files\Factor.out" />
+    <None Include="Files\Golden.b" />
+    <None Include="Files\Golden.out" />
+    <None Include="Files\Hanoi.b" />
+    <None Include="Files\Hanoi.out" />
+    <None Include="Files\Hello.b" />
+    <None Include="Files\Hello.out" />
+    <None Include="Files\Hello2.b" />
+    <None Include="Files\Hello2.out" />
+    <None Include="Files\Impeccable.b" />
+    <None Include="Files\Impeccable.out" />
+    <None Include="Files\Kiloseconds.b" />
+    <None Include="Files\Life.b" />
+    <None Include="Files\Life.in" />
+    <None Include="Files\Life.out" />
+    <None Include="Files\Long.b" />
+    <None Include="Files\Long.out" />
+    <None Include="Files\LostKng.b" />
+    <None Include="Files\LostKng.in" />
+    <None Include="Files\LostKng.out" />
+    <None Include="Files\Mandelbrot-extreme.b" />
+    <None Include="Files\Mandelbrot-tiny.b" />
+    <None Include="Files\Mandelbrot.b" />
+    <None Include="Files\Mandelbrot.out" />
+    <None Include="Files\OptimTease.b" />
+    <None Include="Files\OptimTease.in" />
+    <None Include="Files\OptimTease.out" />
+    <None Include="Files\PIdigits-as.b" />
+    <None Include="Files\PIdigits-cp.b" />
+    <None Include="Files\PIdigits-orig.b" />
+    <None Include="Files\PIdigits.16.b" />
+    <None Include="Files\PIdigits.32.b" />
+    <None Include="Files\PIdigits.8.b" />
+    <None Include="Files\PIdigits.b" />
+    <None Include="Files\PIdigits.in" />
+    <None Include="Files\PIdigits.out" />
+    <None Include="Files\PIdigits2.in" />
+    <None Include="Files\Precalc.b" />
+    <None Include="Files\Prime-doubled.b" />
+    <None Include="Files\Prime-orig.b" />
+    <None Include="Files\Prime.16.b" />
+    <None Include="Files\Prime.32.b" />
+    <None Include="Files\Prime.8.b" />
+    <None Include="Files\Prime.b" />
+    <None Include="Files\Prime.in" />
+    <None Include="Files\Prime.out" />
+    <None Include="Files\Prime8.b" />
+    <None Include="Files\Prime8.in" />
+    <None Include="Files\Prime8.out" />
+    <None Include="Files\Prttab.b" />
+    <None Include="Files\SelfInt.b" />
+    <None Include="Files\SelfInt.in" />
+    <None Include="Files\SelfInt.out" />
+    <None Include="Files\Skiploop.b" />
+    <None Include="Files\Tribit.b" />
+    <None Include="Files\utm.b" />
+    <None Include="Files\utm.in" />
+    <None Include="Files\Zozotez-doubled.b" />
+    <None Include="Files\Zozotez-orig.b" />
+    <None Include="Files\Zozotez.16.b" />
+    <None Include="Files\Zozotez.32.b" />
+    <None Include="Files\Zozotez.8.b" />
+    <None Include="Files\Zozotez.b" />
+    <None Include="Files\Zozotez.in" />
+    <None Include="Files\Zozotez.out" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup />
+
+</Project>
