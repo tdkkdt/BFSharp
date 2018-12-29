@@ -1,19 +1,51 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-
-    <IsPackable>false</IsPackable>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>fe0123f9-3059-4cdc-a9d5-484773b9ab8d</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CompilerTests</RootNamespace>
+    <AssemblyName>CompilerTests</AssemblyName>
+    <UseStandardResourceNames>true</UseStandardResourceNames>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Name>CompilerTests</Name>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <Tailcalls>false</Tailcalls>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>3</WarningLevel>
+    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <Tailcalls>true</Tailcalls>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>3</WarningLevel>
+    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(FSharpTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets') ">
+    <FSharpTargetsPath>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets</FSharpTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
-    <PackageReference Include="nunit" Version="3.10.1" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="SyntaxAnalyzerTests.fs" />
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Library.fs" />
     <None Include="Files\al-count-1.b" />
     <None Include="Files\al-count-2.b" />
     <None Include="Files\awib-0.4.b" />
@@ -25,8 +57,8 @@
     <None Include="Files\Bench.out" />
     <None Include="Files\BusyBeaver.b" />
     <None Include="Files\BusyBeaverOverflow.b" />
-    <None Include="Files\cells100k.b" />
     <None Include="Files\cells30k.b" />
+    <None Include="Files\cells100k.b" />
     <None Include="Files\Cellsize.b" />
     <None Include="Files\Cellsize2.b" />
     <None Include="Files\Cellsize3.b" />
@@ -49,12 +81,12 @@
     <None Include="Files\EasyOpt.b" />
     <None Include="Files\Endtest.b" />
     <None Include="Files\Endtest.in" />
-    <None Include="Files\Euler1-orig.b" />
     <None Include="Files\Euler1.b" />
     <None Include="Files\Euler1.out" />
-    <None Include="Files\Euler5-orig.b" />
+    <None Include="Files\Euler1-orig.b" />
     <None Include="Files\Euler5.b" />
     <None Include="Files\Euler5.out" />
+    <None Include="Files\Euler5-orig.b" />
     <None Include="Files\Factor.b" />
     <None Include="Files\Factor.in" />
     <None Include="Files\Factor.out" />
@@ -77,35 +109,35 @@
     <None Include="Files\LostKng.b" />
     <None Include="Files\LostKng.in" />
     <None Include="Files\LostKng.out" />
-    <None Include="Files\Mandelbrot-extreme.b" />
-    <None Include="Files\Mandelbrot-tiny.b" />
     <None Include="Files\Mandelbrot.b" />
     <None Include="Files\Mandelbrot.out" />
+    <None Include="Files\Mandelbrot-extreme.b" />
+    <None Include="Files\Mandelbrot-tiny.b" />
     <None Include="Files\OptimTease.b" />
     <None Include="Files\OptimTease.in" />
     <None Include="Files\OptimTease.out" />
-    <None Include="Files\PIdigits-as.b" />
-    <None Include="Files\PIdigits-cp.b" />
-    <None Include="Files\PIdigits-orig.b" />
+    <None Include="Files\PIdigits.8.b" />
     <None Include="Files\PIdigits.16.b" />
     <None Include="Files\PIdigits.32.b" />
-    <None Include="Files\PIdigits.8.b" />
     <None Include="Files\PIdigits.b" />
     <None Include="Files\PIdigits.in" />
     <None Include="Files\PIdigits.out" />
     <None Include="Files\PIdigits2.in" />
+    <None Include="Files\PIdigits-as.b" />
+    <None Include="Files\PIdigits-cp.b" />
+    <None Include="Files\PIdigits-orig.b" />
     <None Include="Files\Precalc.b" />
-    <None Include="Files\Prime-doubled.b" />
-    <None Include="Files\Prime-orig.b" />
+    <None Include="Files\Prime.8.b" />
     <None Include="Files\Prime.16.b" />
     <None Include="Files\Prime.32.b" />
-    <None Include="Files\Prime.8.b" />
     <None Include="Files\Prime.b" />
     <None Include="Files\Prime.in" />
     <None Include="Files\Prime.out" />
     <None Include="Files\Prime8.b" />
     <None Include="Files\Prime8.in" />
     <None Include="Files\Prime8.out" />
+    <None Include="Files\Prime-doubled.b" />
+    <None Include="Files\Prime-orig.b" />
     <None Include="Files\Prttab.b" />
     <None Include="Files\SelfInt.b" />
     <None Include="Files\SelfInt.in" />
@@ -114,17 +146,54 @@
     <None Include="Files\Tribit.b" />
     <None Include="Files\utm.b" />
     <None Include="Files\utm.in" />
-    <None Include="Files\Zozotez-doubled.b" />
-    <None Include="Files\Zozotez-orig.b" />
+    <None Include="Files\Zozotez.8.b" />
     <None Include="Files\Zozotez.16.b" />
     <None Include="Files\Zozotez.32.b" />
-    <None Include="Files\Zozotez.8.b" />
     <None Include="Files\Zozotez.b" />
     <None Include="Files\Zozotez.in" />
     <None Include="Files\Zozotez.out" />
-    <Compile Include="Program.fs" />
+    <None Include="Files\Zozotez-doubled.b" />
+    <None Include="Files\Zozotez-orig.b" />
+    <None Include="Script.fsx" />
+    <Content Include="packages.config" />
+    <Compile Include="CompileTests.fs" />
+    <Compile Include="TokenizerTests.fs" />
+    <Compile Include="FullTests.fs" />
+    <Compile Include="SyntaxCheckTests.fs" />
   </ItemGroup>
-
-  <ItemGroup />
-
+  <ItemGroup>
+    <Reference Include="FSharp.Core">
+      <HintPath>..\packages\FSharp.Core.4.5.2\lib\net45\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.ValueTuple">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CompilerLib\CompilerLib.fsproj">
+      <Name>CompilerLib</Name>
+      <Project>{f71e592c-97f8-4e86-bc10-e1f99c391701}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.11.0\build\NUnit.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>
