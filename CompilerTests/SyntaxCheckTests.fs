@@ -9,16 +9,16 @@ type SyntaxCheckTests() =
 
     [<Test>]
     member this.OkTest() =
-        Assert.AreEqual(SyntaxCheckResult.OK, SyntaxChecker().CheckSyntax [Token.LoopStart; Token.LoopEnd; Token.IncrementData])
+        Assert.AreEqual(SyntaxCheckResult.OK, SyntaxChecker.checkSyntax [Token.LoopStart; Token.LoopEnd; Token.IncrementData])
 
     [<Test>]
     member this.EmptyTest() =
-        Assert.AreEqual(SyntaxCheckResult.CodeEmpty, SyntaxChecker().CheckSyntax [])
+        Assert.AreEqual(SyntaxCheckResult.CodeEmpty, SyntaxChecker.checkSyntax [])
 
     [<Test>]
     member this.LoopTest() =
-        Assert.AreEqual(SyntaxCheckResult.LoopsProblem, SyntaxChecker().CheckSyntax [Token.LoopStart])
-        Assert.AreEqual(SyntaxCheckResult.LoopsProblem, SyntaxChecker().CheckSyntax [Token.LoopEnd])
-        Assert.AreEqual(SyntaxCheckResult.LoopsProblem, SyntaxChecker().CheckSyntax [Token.LoopEnd; Token.LoopStart])
-        Assert.AreEqual(SyntaxCheckResult.LoopsProblem, SyntaxChecker().CheckSyntax [Token.LoopStart; Token.LoopEnd; Token.LoopStart])
-        Assert.AreEqual(SyntaxCheckResult.LoopsProblem, SyntaxChecker().CheckSyntax [Token.LoopStart; Token.IncrementData; Token.LoopEnd; Token.IncrementData; Token.LoopStart; Token.IncrementData])
+        Assert.AreEqual(SyntaxCheckResult.LoopsProblem, SyntaxChecker.checkSyntax [Token.LoopStart])
+        Assert.AreEqual(SyntaxCheckResult.LoopsProblem, SyntaxChecker.checkSyntax [Token.LoopEnd])
+        Assert.AreEqual(SyntaxCheckResult.LoopsProblem, SyntaxChecker.checkSyntax [Token.LoopEnd; Token.LoopStart])
+        Assert.AreEqual(SyntaxCheckResult.LoopsProblem, SyntaxChecker.checkSyntax [Token.LoopStart; Token.LoopEnd; Token.LoopStart])
+        Assert.AreEqual(SyntaxCheckResult.LoopsProblem, SyntaxChecker.checkSyntax [Token.LoopStart; Token.IncrementData; Token.LoopEnd; Token.IncrementData; Token.LoopStart; Token.IncrementData])

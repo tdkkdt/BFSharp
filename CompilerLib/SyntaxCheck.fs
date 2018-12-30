@@ -2,8 +2,8 @@
 
 type SyntaxCheckResult = OK | CodeEmpty | LoopsProblem
 
-type SyntaxChecker() = 
-    member this.CheckSyntax (tokens : Token list): SyntaxCheckResult = 
+module SyntaxChecker = 
+    let checkSyntax (tokens : Token list): SyntaxCheckResult = 
         if tokens.IsEmpty then
             CodeEmpty
         else

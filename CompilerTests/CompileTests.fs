@@ -33,7 +33,7 @@ type CompileTests () =
         let ilGenerator = methodBuilder.GetILGenerator()
         let ptrFI = testCodeContainerBaseType.GetField("ptr")
         let memoryFI = testCodeContainerBaseType.GetField ("memory")
-        Builder().Build tokens ilGenerator memoryFI ptrFI false
+        Builder.build tokens ilGenerator memoryFI ptrFI false
         let testCodeContainerType = typeBuilder.CreateTypeInfo().AsType()
         let testCodeContainer = Activator.CreateInstance(testCodeContainerType)
         testCodeContainerType.InvokeMember("Main", BindingFlags.InvokeMethod, null, testCodeContainer, [||]) |> ignore

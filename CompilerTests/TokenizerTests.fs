@@ -8,14 +8,14 @@ type TokenizerTests () =
 
     [<Test>]
     member this.SimpleTest () =
-        Assert.AreEqual([Token.IncrementPtr], Tokens().Tokenize ">");
-        Assert.AreEqual([Token.DecrementPtr], Tokens().Tokenize "<");
-        Assert.AreEqual([Token.IncrementData], Tokens().Tokenize "+");
-        Assert.AreEqual([Token.DecrementData], Tokens().Tokenize "-");
-        Assert.AreEqual([Token.OutputData], Tokens().Tokenize ".");
-        Assert.AreEqual([Token.InputData], Tokens().Tokenize ",");
-        Assert.AreEqual([Token.LoopStart], Tokens().Tokenize "[");
-        Assert.AreEqual([Token.LoopEnd], Tokens().Tokenize "]");
+        Assert.AreEqual([Token.IncrementPtr], Tokens.tokenize ">");
+        Assert.AreEqual([Token.DecrementPtr], Tokens.tokenize "<");
+        Assert.AreEqual([Token.IncrementData], Tokens.tokenize "+");
+        Assert.AreEqual([Token.DecrementData], Tokens.tokenize "-");
+        Assert.AreEqual([Token.OutputData], Tokens.tokenize ".");
+        Assert.AreEqual([Token.InputData], Tokens.tokenize ",");
+        Assert.AreEqual([Token.LoopStart], Tokens.tokenize "[");
+        Assert.AreEqual([Token.LoopEnd], Tokens.tokenize "]");
 
     [<Test>]
     member this.SeveralTokens() = 
@@ -30,7 +30,7 @@ type TokenizerTests () =
                 Token.LoopStart;
                 Token.LoopEnd
             ],
-            Tokens().Tokenize "><+-.,[]"
+            Tokens.tokenize "><+-.,[]"
         );
 
     [<Test>]
@@ -48,5 +48,5 @@ type TokenizerTests () =
                 Token.LoopStart;
                 Token.LoopEnd
             ],
-            Tokens().Tokenize "[Comment]><+-\r\nabc.,[]"
+            Tokens.tokenize "[Comment]><+-\r\nabc.,[]"
         );

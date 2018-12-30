@@ -7,6 +7,6 @@ open CompilerLib
 let main argv = 
     let bfFileName = argv.[0]
     let exeFileName = argv.[1]
-    Compiler().CompileFromFile bfFileName exeFileName
+    Compiler.compileFromFile bfFileName exeFileName
     printf "Done."
     0

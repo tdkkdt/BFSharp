@@ -17,10 +17,10 @@ type FullTests() =
         Directory.EnumerateFiles(filesPath, "*.b") 
         |> Seq.iter (fun fileName ->
             let fileContent = File.ReadAllText fileName
-            let tokens = Tokens().Tokenize fileContent
-            let syntaxCheckResult = SyntaxChecker().CheckSyntax tokens
+            let tokens = Tokens.tokenize fileContent
+            let syntaxCheckResult = SyntaxChecker.checkSyntax tokens
             Assert.AreEqual(SyntaxCheckResult.OK, syntaxCheckResult)
-            let assembly = Compiler().CreateDynamicAssembly tokens "test.exe" AssemblyBuilderAccess.RunAndCollect
+            let assembly = Compiler.createDynamicAssembly tokens "test.exe" AssemblyBuilderAccess.RunAndCollect
             let codeContainerType = assembly.EntryPoint.DeclaringType
             let codeContainer = Activator.CreateInstance(codeContainerType)
             let onlyFileName = Path.GetFileNameWithoutExtension fileName

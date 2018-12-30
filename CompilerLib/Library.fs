@@ -5,23 +5,8 @@ open System.Threading;
 open System.Reflection;
 open System.Reflection.Emit;
 
-type Compiler() =  
-    member this.CompileFromTokens (tokens : Token list) (exeFileName : string) =
-        let assemblyBuilder = this.CreateDynamicAssembly tokens exeFileName AssemblyBuilderAccess.RunAndSave
-        assemblyBuilder.Save exeFileName
-    
-    member this.CompileFromText (code : string) (exeFileName : string) =
-        let tokens = Tokens().Tokenize code
-        let syntaxCheckResult = SyntaxChecker().CheckSyntax tokens
-        match syntaxCheckResult with
-            | CodeEmpty -> Console.WriteLine "The code is empty"
-            | LoopsProblem -> Console.WriteLine "There is problem with loops. Check it please"
-            | OK -> this.CompileFromTokens tokens exeFileName
-
-    member this.CompileFromFile (codeFileName : string) (exeFileName : string) =
-        this.CompileFromText (System.IO.File.ReadAllText (codeFileName)) exeFileName
-
-    member this.CreateDynamicAssembly (tokens : Token list) (exeFileName : string) (access : AssemblyBuilderAccess): AssemblyBuilder =
+module Compiler =  
+    let createDynamicAssembly (tokens : Token list) (exeFileName : string) (access : AssemblyBuilderAccess): AssemblyBuilder =
         let shortFileName = System.IO.Path.GetFileName exeFileName
         let assemblyName = AssemblyName(shortFileName)
         let currentDom = Thread.GetDomain()
@@ -40,7 +25,7 @@ type Compiler() =
         let codeContainerIlGenerator = codeContainerMainMethodBuilder.GetILGenerator()
         let ptrFI = codeContainerTypeBuilder.DefineField("ptr", typedefof<int>, FieldAttributes.Private)
         let memoryFI = codeContainerTypeBuilder.DefineField("memory", typedefof<byte[]>, FieldAttributes.Private)
-        Builder().Build tokens codeContainerIlGenerator memoryFI ptrFI false
+        Builder.build tokens codeContainerIlGenerator memoryFI ptrFI false
 
         codeContainerTypeBuilder.CreateType() |> ignore
 
@@ -60,3 +45,18 @@ type Compiler() =
         assemblyBuilder.SetEntryPoint programMainMethodBuilder
         programTypeBuilder.CreateType() |> ignore
         assemblyBuilder
+
+    let compileFromTokens (tokens : Token list) (exeFileName : string) =
+        let assemblyBuilder = createDynamicAssembly tokens exeFileName AssemblyBuilderAccess.RunAndSave
+        assemblyBuilder.Save exeFileName
+    
+    let compileFromText (code : string) (exeFileName : string) =
+        let tokens = Tokens.tokenize code
+        let syntaxCheckResult = SyntaxChecker.checkSyntax tokens
+        match syntaxCheckResult with
+            | CodeEmpty -> Console.WriteLine "The code is empty"
+            | LoopsProblem -> Console.WriteLine "There is problem with loops. Check it please"
+            | OK -> compileFromTokens tokens exeFileName
+
+    let compileFromFile (codeFileName : string) (exeFileName : string) =
+        compileFromText (System.IO.File.ReadAllText (codeFileName)) exeFileName

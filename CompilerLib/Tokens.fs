@@ -10,8 +10,8 @@ type Token = IncrementPtr
             | LoopEnd
             | Unknown
 
-type Tokens() = 
-    member this.Tokenize (code : string): Token list = 
+module Tokens = 
+    let tokenize (code : string): Token list = 
         code.ToCharArray() |> Array.toList |> List.map (fun x -> 
             match x: char with
                 | '>' -> IncrementPtr
