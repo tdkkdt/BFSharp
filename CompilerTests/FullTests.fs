@@ -64,7 +64,7 @@ type FullTests() =
     member this.Awib04() =
         testFile "awib-0.4" (readOuputFromFile "awib-0.4")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Beer() =
         testFile "Beer" (readOuputFromFile "Beer")
 
@@ -76,41 +76,33 @@ type FullTests() =
     member this.BusyBeaver() =
         testFile "BusyBeaver" (readOuputFromFile "BusyBeaver")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
-    member this.BusyBeaverOverflow() =
-        testFile "BusyBeaverOverflow" (readOuputFromFile "al-count-1")
-
     [<Test; Timeout(5000)>]
     member this.Cells30k() =
         testFile "cells30k" (readOuputFromFile "cells30k")
 
     [<Test; Timeout(5000)>]
-    member this.Cells100k() =
-        testFile "cells100k" (readOuputFromFile "al-count-1")
-
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
     member this.Cellsize() =
         testFile "Cellsize" (readOuputFromFile "Cellsize")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Cellsize2() =
-        testFile "Cellsize2" (readOuputFromFile "al-count-1")
+        testFile "Cellsize2" (readOutputFromString "This interpreter has 8bit cells.\n")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Cellsize3() =
         testFile "Cellsize3" (readOuputFromFile "Cellsize3")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Cellsize4() =
-        testFile "Cellsize4" (readOuputFromFile "al-count-1")
+        testFile "Cellsize4" (readOutputFromString "This interpreter has 8 bit cells.\n")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Cellsize5() =
         testFile "Cellsize5" (readOuputFromFile "Cellsize5")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Chess() =
-        testFile "chess" (readOuputFromFile "al-count-1")
+        testFile "chess" (readOuputFromFile "Chess")
 
     [<Test; Timeout(5000)>]
     member this.Collatz() =
@@ -166,23 +158,23 @@ type FullTests() =
     member this.Endtest() =
         testFile "Endtest" (readOutputFromString "<NL>\n0xFF\n")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Euler1() =
         testFile "Euler1" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Euler5() =
         testFile "Euler5" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Factor() =
         testFile "Factor" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Golden() =
-        testFile "Golden" (readOuputFromFile "al-count-1")
+        testFile "Golden" (readOuputFromFile "Golden")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Hanoi() =
         testFile "Hanoi" (readOuputFromFile "al-count-1")
 
@@ -194,51 +186,51 @@ type FullTests() =
     member this.Hello2() =
         testFile "Hello2" (readOuputFromFile "Hello2")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Impeccable() =
         testFile "Impeccable" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Kiloseconds () =
         testFile "Kiloseconds" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Life() =
-        testFile "Life" (readOuputFromFile "al-count-1")
+        testFile "Life" (readOuputFromFile "Life")
 
     [<Test; Timeout(5000)>]
     member this.Long() =
         testFile "Long" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000); Ignore("Stackoverflow")>]
     member this.LostKng() =
         testFile "LostKng" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Mandelbrot() =
         testFile "Mandelbrot" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Mandelbrotextreme() =
         testFile "Mandelbrot-extreme" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Mandelbrottiny() =
         testFile "Mandelbrot-tiny" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.OptimTease() =
-        testFile "OptimTease" (readOuputFromFile "al-count-1")
+        testFile "OptimTease" (readOuputFromFile "OptimTease")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.PIdigits() =
         testFile "PIdigits" (readOuputFromFile "PIdigits")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.PIdigitsas() =
         testFile "PIdigits-as" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.PIdigitscp() =
         testFile "PIdigits-cp" (readOuputFromFile "al-count-1")
 
@@ -246,7 +238,7 @@ type FullTests() =
     member this.PIdigitsorig() =
         testFile "PIdigits-orig" (readOutputFromString "3.141\n")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.PIdigits16() =
         testFile "PIdigits.16" (readOuputFromFile "al-count-1")
 
@@ -258,7 +250,7 @@ type FullTests() =
     member this.Prime() =
         testFile "Prime" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Primedoubled() =
         testFile "Prime-doubled" (readOuputFromFile "al-count-1")
 
@@ -266,25 +258,25 @@ type FullTests() =
     member this.Primeorig() =
         testFile "Prime-orig" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Prttab() =
-        testFile "Prttab" (readOuputFromFile "al-count-1")
+        testFile "Prttab" (readOuputFromFile "Prttab")
 
     [<Test; Timeout(5000)>]
     member this.SelfInt() =
         testFile "SelfInt" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Skiploop() =
-        testFile "Skiploop" (readOuputFromFile "al-count-1")
+        testFile "Skiploop" (readOutputFromString "OK\n")
 
     [<Test; Timeout(5000)>]
     member this.Tribit() =
         testFile "Tribit" (readOutputFromString "8 bit cells\n")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Utm() =
-        testFile "utm" (readOuputFromFile "al-count-1")
+        testFile "utm" (readOutputFromString "11111111111111111c11111111111111111c11111111111111111c11111111111111111c11111111111111111c1c111111111111111111111\n")
 
     [<Test; Timeout(5000); Ignore("StackOverflow")>]
     member this.Zozotez() =
@@ -294,6 +286,6 @@ type FullTests() =
     member this.Zozotezdoubled() =
         testFile "Zozotez-doubled" (readOuputFromFile "al-count-1")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Zozotezorig() =
         testFile "Zozotez-orig" (readOuputFromFile "al-count-1")
