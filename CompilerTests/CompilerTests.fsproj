@@ -160,6 +160,7 @@
     <Compile Include="TokenizerTests.fs" />
     <Compile Include="FullTests.fs" />
     <Compile Include="SyntaxCheckTests.fs" />
+    <Compile Include="OptimizerTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">

@@ -9,6 +9,9 @@ type Token = IncrementPtr
             | LoopStart
             | LoopEnd
             | Unknown
+            | MovePtrDelta of delta : int
+            | SetDataDelta of delta : int
+            | ClearData
 
 module Tokens = 
     let tokenize (code : string): Token list = 

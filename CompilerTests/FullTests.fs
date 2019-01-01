@@ -106,7 +106,7 @@ type FullTests() =
 
     [<Test; Timeout(5000)>]
     member this.Collatz() =
-        testFile "Collatz" (readOuputFromFile "al-count-1")
+        testFile "Collatz" (readOuputFromFile "Collatz")
 
     [<Test; Timeout(5000)>]
     member this.Counter() =
@@ -152,7 +152,7 @@ type FullTests() =
 
     [<Test; Timeout(5000)>]
     member this.EasyOpt() =
-        testFile "EasyOpt" (readOuputFromFile "al-count-1")
+        testFile "EasyOpt" (readOutputFromString "OK\n")
 
     [<Test; Timeout(5000)>]
     member this.Endtest() =
@@ -168,7 +168,7 @@ type FullTests() =
 
     [<Test; Timeout(5000)>]
     member this.Factor() =
-        testFile "Factor" (readOuputFromFile "al-count-1")
+        testFile "Factor" (readOuputFromFile "Factor")
 
     [<Test; Timeout(5000)>]
     member this.Golden() =
@@ -176,7 +176,7 @@ type FullTests() =
 
     [<Test; Timeout(5000)>]
     member this.Hanoi() =
-        testFile "Hanoi" (readOuputFromFile "al-count-1")
+        testFile "Hanoi" (readOuputFromFile "Hanoi")
 
     [<Test; Timeout(5000)>]
     member this.Hello() =
@@ -208,7 +208,7 @@ type FullTests() =
 
     [<Test; Timeout(5000)>]
     member this.Mandelbrot() =
-        testFile "Mandelbrot" (readOuputFromFile "al-count-1")
+        testFile "Mandelbrot" (readOuputFromFile "Mandelbrot")
 
     [<Test; Timeout(5000)>]
     member this.Mandelbrotextreme() =
@@ -216,7 +216,7 @@ type FullTests() =
 
     [<Test; Timeout(5000)>]
     member this.Mandelbrottiny() =
-        testFile "Mandelbrot-tiny" (readOuputFromFile "al-count-1")
+        testFile "Mandelbrot-tiny" (readOuputFromFile "Mandelbrot-tiny")
 
     [<Test; Timeout(5000)>]
     member this.OptimTease() =
@@ -248,7 +248,7 @@ type FullTests() =
 
     [<Test; Timeout(5000)>]
     member this.Prime() =
-        testFile "Prime" (readOuputFromFile "al-count-1")
+        testFile "Prime" (readOuputFromFile "Prime")
 
     [<Test; Timeout(5000)>]
     member this.Primedoubled() =
@@ -256,7 +256,7 @@ type FullTests() =
 
     [<Test; Timeout(5000)>]
     member this.Primeorig() =
-        testFile "Prime-orig" (readOuputFromFile "al-count-1")
+        testFile "Prime-orig" (readOuputFromFile "Prime-orig")
 
     [<Test; Timeout(5000)>]
     member this.Prttab() =
@@ -264,7 +264,7 @@ type FullTests() =
 
     [<Test; Timeout(5000)>]
     member this.SelfInt() =
-        testFile "SelfInt" (readOuputFromFile "al-count-1")
+        testFile "SelfInt" (readOuputFromFile "SelfInt")
 
     [<Test; Timeout(5000)>]
     member this.Skiploop() =

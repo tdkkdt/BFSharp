@@ -46,6 +46,7 @@
     <None Include="Script.fsx" />
     <Content Include="packages.config" />
     <Compile Include="SyntaxCheck.fs" />
+    <Compile Include="Optimizer.fs" />
     <Compile Include="Builder.fs" />
     <Compile Include="Library.fs" />
   </ItemGroup>

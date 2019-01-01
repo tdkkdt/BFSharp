@@ -25,7 +25,7 @@ module Compiler =
         let codeContainerIlGenerator = codeContainerMainMethodBuilder.GetILGenerator()
         let ptrFI = codeContainerTypeBuilder.DefineField("ptr", typedefof<int>, FieldAttributes.Private)
         let memoryFI = codeContainerTypeBuilder.DefineField("memory", typedefof<byte[]>, FieldAttributes.Private)
-        Builder.build tokens codeContainerIlGenerator memoryFI ptrFI false
+        Builder.build tokens codeContainerIlGenerator memoryFI ptrFI
 
         codeContainerTypeBuilder.CreateType() |> ignore
 

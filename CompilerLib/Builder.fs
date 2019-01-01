@@ -86,27 +86,62 @@ module Builder =
         context.IlGenerator.Emit(OpCodes.Brtrue, loopInfo.BodyLabel)
         processNextToken nextTokens {context with LoopInfos = context.LoopInfos.Tail}
 
+    and private processMovePtrDelta (delta : int) nextTokens context =
+        context.IlGenerator.Emit(OpCodes.Ldarg_0)
+        prorcessGetPtr context
+        context.IlGenerator.Emit(OpCodes.Ldc_I4, delta)
+        context.IlGenerator.Emit(OpCodes.Add)
+        context.IlGenerator.Emit(OpCodes.Stfld, context.PtrFI)
+        processNextToken nextTokens context
+    
+    and private processSetDataDelta (delta : int) nextTokens context =
+        processGetMemory context
+        prorcessGetPtr context
+        context.IlGenerator.Emit(OpCodes.Ldelema, typedefof<byte>)
+        context.IlGenerator.Emit(OpCodes.Dup)
+        context.IlGenerator.Emit(OpCodes.Ldind_U1)
+        context.IlGenerator.Emit(OpCodes.Ldc_I4, delta)
+        context.IlGenerator.Emit(OpCodes.Add)
+        context.IlGenerator.Emit(OpCodes.Conv_U1)
+        context.IlGenerator.Emit(OpCodes.Stind_I1)
+        processNextToken nextTokens context
+
+    and private processClearData nextTokens context =
+        processGetMemory context
+        prorcessGetPtr context
+        context.IlGenerator.Emit(OpCodes.Ldc_I4_0)
+        context.IlGenerator.Emit(OpCodes.Stelem_I1)
+        processNextToken nextTokens context
+
     and private processToken (token : Token) (context : BuilderContext) (nextTokens :Token list) =
         match token with
-          | Token.IncrementPtr -> processIncrementPtr nextTokens context
-          | Token.DecrementPtr -> processDecrementPtr nextTokens context
-          | Token.IncrementData -> processIncrementData nextTokens context
-          | Token.DecrementData -> processDecrementData nextTokens context
-          | Token.InputData -> processInputData nextTokens context
-          | Token.OutputData -> processOutputData nextTokens context
-          | Token.LoopStart -> processLoopStart nextTokens context
-          | Token.LoopEnd -> processLoopEnd nextTokens context
-          | Token.Unknown -> processNextToken nextTokens context
+          | IncrementPtr -> processIncrementPtr nextTokens context
+          | DecrementPtr -> processDecrementPtr nextTokens context
+          | IncrementData -> processIncrementData nextTokens context
+          | DecrementData -> processDecrementData nextTokens context
+          | InputData -> processInputData nextTokens context
+          | OutputData -> processOutputData nextTokens context
+          | LoopStart -> processLoopStart nextTokens context
+          | LoopEnd -> processLoopEnd nextTokens context
+          | Unknown -> processNextToken nextTokens context
+          | MovePtrDelta(delta) when delta = 1 -> processIncrementPtr nextTokens context
+          | MovePtrDelta(delta) when delta = -1 -> processDecrementPtr nextTokens context
+          | MovePtrDelta(delta) -> processMovePtrDelta delta nextTokens context
+          | SetDataDelta(delta) when delta = 1 -> processIncrementData nextTokens context
+          | SetDataDelta(delta) when delta = -1 -> processDecrementData nextTokens context
+          | SetDataDelta(delta) -> processSetDataDelta delta nextTokens context
+          | ClearData -> processClearData nextTokens context
     
     and private processNextToken (tokens : Token list) (context : BuilderContext) =
         match tokens with
           | [] -> ()
           | h::t -> processToken h context t
 
-    let build (tokens : Token list) (ilGenerator : ILGenerator) (memoryFI : FieldInfo) (ptrFI : FieldInfo) (doOptimizations : bool) =
+    let build (tokens : Token list) (ilGenerator : ILGenerator) (memoryFI : FieldInfo) (ptrFI : FieldInfo) =
         ilGenerator.Emit(OpCodes.Ldarg_0)
         ilGenerator.Emit(OpCodes.Ldc_I4, 30000)
         ilGenerator.Emit(OpCodes.Newarr, typedefof<byte>)
         ilGenerator.Emit(OpCodes.Stfld, memoryFI)
-        processNextToken tokens {IlGenerator = ilGenerator; MemoryFI = memoryFI; PtrFI = ptrFI; LoopInfos = []}
+        let optimizedTokens = Optimizer.optimizeTokens tokens
+        processNextToken optimizedTokens {IlGenerator = ilGenerator; MemoryFI = memoryFI; PtrFI = ptrFI; LoopInfos = []}
         ilGenerator.Emit(OpCodes.Ret)
