@@ -86,22 +86,22 @@ module Builder =
         context.IlGenerator.Emit(OpCodes.Brtrue, loopInfo.BodyLabel)
         processNextTokensFn {context with LoopInfos = context.LoopInfos.Tail}
 
-    let private processToken (token : Token) (context : BuilderContext) (processNextTokenFn : BuilderContext -> unit) =
+    let rec private processToken (token : Token) (context : BuilderContext) (nextTokens :Token list) =
         match token with
-          | Token.IncrementPtr -> processIncrementPtr context processNextTokenFn
-          | Token.DecrementPtr -> processDecrementPtr context processNextTokenFn
-          | Token.IncrementData -> processIncrementData context processNextTokenFn
-          | Token.DecrementData -> processDecrementData context processNextTokenFn
-          | Token.InputData -> processInputData context processNextTokenFn
-          | Token.OutputData -> processOutputData context processNextTokenFn
-          | Token.LoopStart -> processLoopStart context processNextTokenFn
-          | Token.LoopEnd -> processLoopEnd context processNextTokenFn
-          | Token.Unknown -> processNextTokenFn context
+          | Token.IncrementPtr -> processIncrementPtr context (processNextToken nextTokens)
+          | Token.DecrementPtr -> processDecrementPtr context (processNextToken nextTokens)
+          | Token.IncrementData -> processIncrementData context (processNextToken nextTokens)
+          | Token.DecrementData -> processDecrementData context (processNextToken nextTokens)
+          | Token.InputData -> processInputData context (processNextToken nextTokens)
+          | Token.OutputData -> processOutputData context (processNextToken nextTokens)
+          | Token.LoopStart -> processLoopStart context (processNextToken nextTokens)
+          | Token.LoopEnd -> processLoopEnd context (processNextToken nextTokens)
+          | Token.Unknown -> processNextToken nextTokens context
     
-    let rec private processNextToken (tokens : Token list) (context : BuilderContext) =
+    and private processNextToken (tokens : Token list) (context : BuilderContext) =
         match tokens with
-          | h::t -> processToken h context (processNextToken t)
           | [] -> ()
+          | h::t -> processToken h context t |> ignore
 
     let build (tokens : Token list) (ilGenerator : ILGenerator) (memoryFI : FieldInfo) (ptrFI : FieldInfo) (doOptimizations : bool) =
         ilGenerator.Emit(OpCodes.Ldarg_0)

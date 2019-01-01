@@ -60,7 +60,7 @@ type FullTests() =
     member this.Alcount2Test() =
         testFile "al-count-2" (readOutputFromString "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
-    [<Test; Timeout(5000); Ignore("StackOverflow")>]
+    [<Test; Timeout(5000)>]
     member this.Awib04() =
         testFile "awib-0.4" (readOuputFromFile "awib-0.4")
 
